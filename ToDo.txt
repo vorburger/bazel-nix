@@ -1,0 +1,4 @@
+
+README
+
+Subfolders for different Bazel versions; HOW-TO single Flake for all, with only one flake.lock at the root?
