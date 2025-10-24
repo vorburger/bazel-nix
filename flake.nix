@@ -26,19 +26,30 @@
               sha256 = "sha256-TcjpnfqALiUtrBdtCCAf0VxUKueMRIyKiZdLbzh8KCw=";
             };
 
-            unpackPhase = ''
-              # The source is a single binary file, not an archive, so no unpacking is needed.
-            '';
+            buildInputs = [
+              pkgs.stdenv.cc.cc
+            ];
+
+            nativeBuildInputs = [
+              pkgs.autoPatchelfHook
+            ];
 
             installPhase = ''
+              runHook preInstall
               mkdir -p $out/bin
               cp $src $out/bin/bazel
               chmod +x $out/bin/bazel
+              runHook postInstall
             '';
 
-            # Disable standard Nix patching/stripping for pre-compiled binaries
+            postFixup = ''
+              # $out/bin/bazel --version
+            '';
+
+            dontBuild = true;
+            dontUnpack = true;
             dontStrip = true;
-            dontPatchELF = true;
+            dontPatchELF = false; # !!
           };
 
           # Set this package as the default output, allowing the user to run `nix run .`
