@@ -25,10 +25,8 @@
               systemName = "darwin-x86_64";
               sha256 = "sha256-znM0YnTDefd4gNuL2LnIVpiF/lbxk4YXN2CUnakHjfA=";
             };
-            # TODO aarch64-linux
-            # TODO aarch64-darwin
           };
-          platform = platforms.${system} or (builtins.throw "Unsupported system: ''${system}");
+          platform = lib.getAttr system platforms;
         in
         {
           bazel-binary = pkgs.stdenv.mkDerivation {
