@@ -1,3 +1,7 @@
+***ARCHIVED** due to https://github.com/vorburger/bazel-nix/issues/3 - this is broken!!*
+
+---
+
 # Bazel 🏗️ Nix ❄️
 
 This is [Bazel.build](https://bazel.build) made available as a [Nix flake](https://nixos.org/).
